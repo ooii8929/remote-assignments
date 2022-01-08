@@ -73,6 +73,7 @@ nav,ul{
     color:#ffffff;
     padding:14px 20px;
     border-radius: 30px;
+    margin-top:30px;
 }
 .btn:hover{
     background-color: darkred;
