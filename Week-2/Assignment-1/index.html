@@ -1,8 +1,31 @@
 <!DOCTYPE html>
 <head>
-    <script src="js/max.js"></script>
-    <script src="js/findPosition.js"></script>
+    
+    
 </head>
 <body>
+    <section id="question-section">
+        <input type="text" id="ask-question" onfocus="this.value=''">
+        <button>找出最大值</button>
+    </section>
+
+    <section id="display-question-section">
+        <h2>你的值有：</h2>
+        <div>
+            <a class="display-question"></a>
+        </div>
+    </section>
     
+    <section id="answer-section">
+        <h2>答案是：</h2>
+        <div>
+            <a class="answer"></a>
+        </div>
+    </section>
+
+
+
+
+    <script src="js/max.js"></script>
+    <script src="js/findPosition.js"></script>
 </body>
