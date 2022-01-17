@@ -1,4 +1,4 @@
-function max(numbers){
+function maxSort(numbers){
    
     for(let i = 0 ; i <numbers.length; i++){
         for(let j = 0 ; j <numbers.length; j++){
@@ -12,12 +12,33 @@ function max(numbers){
     return numbers[0];
 }
 
+
+/*max without sort*/
+function max(numbers){
+    let temNum = 0;
+    for(let i = 0 ; i <numbers.length; i++){
+        
+        if (numbers[i]>temNum){
+        	temNum = numbers[i];
+        }
+    }
+    return temNum;
+}
+
+
 console.log(max([1, 2, 4, 5])); // should print 5
 console.log(max([5, 2, 7, 1, 6])); // should print 7
 
-/* Custom Return Page */
 
-/*input to array*/
+
+
+
+/*
+
+//Custom Return Page 
+
+//input to array
+
 function stringArrToNumber(array){
     let myArray;
     if(array.includes(',')){
@@ -36,7 +57,7 @@ function stringArrToNumber(array){
     return myNumberArray;
 }
 
-/* remove Nan */
+//remove Nan
 function removeNull(array) {
     let temAr = array.filter(function (value) {
     return !Number.isNaN(value);
@@ -53,8 +74,7 @@ let ans = document.querySelector('.answer');
 let question= [];
 
 
-
-/*display question*/
+//display question
 clickAsk.addEventListener('click',()=>{
     
     let ansContent = document.querySelector('#ask-question').value;
@@ -64,7 +84,6 @@ clickAsk.addEventListener('click',()=>{
     dispalyQuestion.textContent  = question;
     ans.textContent = `${max(question)}`;
 })
-
-
+*/
 
 

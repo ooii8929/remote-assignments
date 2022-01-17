@@ -31,3 +31,5 @@ function count(input) {
 let input1 = ["a", "b", "c", "a", "c", "a", "x","t","w","x"];
 console.log(count(input1));
 // should print}} {a:3, b:1, c:2, x:1}
+
+
