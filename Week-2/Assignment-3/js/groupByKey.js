@@ -1,13 +1,24 @@
 function groupByKey(input) {
     let ans = {};
     for(let i = 0 ; i < input.length;i++){
+        
+        
         //get input key
         let objectKey=  Object.values(input[i])[0];
         //get input value
         let objectValue=  Object.values(input[i])[1];
         let ansLength= Object.keys(ans).length;
-        let repeat;
 
+        //check ans loop
+        if(objectKey in ans){
+            
+            ans[objectKey] += objectValue;
+        }else{
+            ans[objectKey] = objectValue;
+        }
+        /*     
+        
+        //let repeat = false;
         //check ans loop
         for(let j = 0 ; j < ansLength;j++){
             repeat = false;
@@ -26,7 +37,7 @@ function groupByKey(input) {
         }else{
             ans[objectKey] = objectValue;
         }
-        
+        */
         
 
     }
