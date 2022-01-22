@@ -1,0 +1,36 @@
+<script>
+    function twoSum(nums, target) {
+    // your code here
+    /*
+        for(let i = 0 ; i < nums.length;i++){
+            for(let j = 1 ; j < nums.length;j++){
+                if(nums[i]+nums[j] ===target){
+                    return [i,j];
+                }
+        }
+        }
+    */ 
+        let temDict = {};
+        
+        for(let i = 0 ; i < nums.length;i++){
+            temDict[i] = nums[i];
+        }
+        for(let j = 0 ;j<Object.keys(temDict).length;j++){
+            let temAns = target-temDict[j];
+            if(temAns in temDict[j]){
+                return [j,Object.keys(temDict)];
+            }
+        }
+        
+    }
+    console.log(twoSum([2, 7, 11, 15], 9));
+  
+    /*
+    For example:
+    twoSum([2, 7, 11, 15], 9);
+    Should returns:
+    [0, 1]
+    Because:
+    nums[0]+nums[1] is 9
+    */
+</script>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+
+    <script>
+        function loadDoc() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState ===4){
+                    document.getElementById('ajax').innerHTML = xhr.responseText;
+
+                }
+            }
+            xhr.open('GET','data?number=' +document.getElementById('question').value);
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="question"><button type="button" onclick="loadDoc()">計算</button>
+    <div id="ajax"></div>
+</body>
