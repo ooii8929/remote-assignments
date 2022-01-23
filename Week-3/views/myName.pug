@@ -2,16 +2,14 @@ extends layout
 
 block content
     header
-        
         if username
             //- h1= user or #{user}   or h1(title='My name' + name) #{name}
             h2 Welcome, #{username}!
-            
             form(action='/logout',method='post')
                 button(type='submit') Bye!
         else 
         
-            form
+            form(action='/trackName',method='get')
                 label Please enter you name:
-                    input(type='text',id="userInputName")
-                button(onclick='loadName()') Submit
+                    input(type='text',name="username")
+                button(type='submit') Submit

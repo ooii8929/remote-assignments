@@ -30,8 +30,8 @@ app.get('/myName', (req, res) => {
 
 
 app.get('/trackName', (req, res) => {
-    const {name} = req.query;
-    res.cookie('username',name);
+    const {username} = req.query;
+    res.cookie('username',username);
     res.redirect('myName');
 })
 
@@ -46,6 +46,12 @@ app.use((req,res,next) =>{
     const err=  new Error('Not Found');
     err.status=404;
     next(err);
+});
+
+app.use((err,req,res,next)=>{
+    res.locals.error =err;
+    res.status(err.status);
+    res.render('error');
 });
 
 app.listen(port, () => {
