@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    header  
+        form(action='/callback',method='get')
+            
+            select
+                each variable in variables
+                    option=variable
+            button(type='submit') Submit

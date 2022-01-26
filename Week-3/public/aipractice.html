@@ -11,23 +11,21 @@
         }
     */ 
         let temDict = {};
-        
+        /* 220126 deleted
         for(let i = 0 ; i < nums.length;i++){
             temDict[nums[i]] = i;
             
         }
-        
+        */
         for(let j = 0 ;j<nums.length;j++){
-            
+            temDict[nums[j]] = j;
+            console.log(temDict);
             let temAns = target-nums[j];
-            let temTargetAns = 0;
-            
+            //find the temAns
             if(temAns in temDict){
-                
-                temTargetAns = temDict[temAns];
-                
-                return [j,temTargetAns];
+                return [temDict[temAns],j];
             }
+
             
         }
         
