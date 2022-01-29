@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    header
+        button Sign up!
+        button Sign in!
+        #signup-action
+            //- h1= user or #{user}   or h1(title='My name' + name) #{name}
+            h2 Sign up
+            form(action='/signup',method='post')
+                label Please enter you email:
+                    input(type='text',name="useremail")
+                label Please enter you password:
+                    input(type='text',name="userpassword")
+                button(type='submit') Sign up!
+        #signin-action
+            h2 Sign in
+            form(action='/signin',method='get')
+                label Please enter you email:
+                    input(type='text',name="useremail")
+                label Please enter you password:
+                    input(type='text',name="userpassword")
+                button(type='submit') Sign in!
