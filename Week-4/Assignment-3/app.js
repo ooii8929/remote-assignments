@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cookieParser());
-
+app.use(express.static('public'));
 
 
 app.set('view engine', 'pug');
@@ -58,6 +58,11 @@ app.get('/createpoststable',(req,res)=>{
 
 });
 
+var status  = {
+    fail:'the user not found',
+};
+
+
 
 //insert post 1
 app.post('/signup',(req, res)=>{
@@ -65,15 +70,31 @@ app.post('/signup',(req, res)=>{
     const {useremail} = req.body;
     const {userpassword} = req.body;
     console.log(useremail);
-    let post = {email:useremail,password:userpassword};
-    let sql = 'INSERT INTO user SET ?';
-    let query = db.query(sql,post,(err,result)=>{
-        if(err) throw err;
+
+    //duplicate email
+    let sql = `SELECT * FROM user WHERE email = '${useremail}'`;
+
+    let query = db.query(sql,(err,result)=>{
         console.log(result);
-        
+        if(err){throw err};
+        //user not found
+        if(!result.length) { 
+            let post = {email:useremail,password:userpassword};
+            let sql = 'INSERT INTO user SET ?';
+            let query = db.query(sql,post,(err,result)=>{
+                if(err) throw err;
+                console.log(result);
+                
+            });
+            res.cookie('useremail',useremail);
+            res.redirect('member');
+        }else{
+            res.render('index',{test2:'user exist'});
+            res.end();
+        };
     });
-    res.cookie('useremail',useremail);
-    res.redirect('member');
+
+    
 });
 
 app.get('/member',(req,res)=>{
@@ -98,40 +119,24 @@ app.get('/getposts',(req, res)=>{
 });
 
 //user login
-app.get('/signin',(req, res)=>{
-    const {useremail} = req.query;
-    let sql = `SELECT * FROM user WHERE email = ${useremail}`;
+app.post('/login',(req, res)=>{
+    const {useremail} = req.body;
+    let sql = `SELECT * FROM user WHERE email = '${useremail}'`;
     
     let query = db.query(sql,(err,result)=>{
-        if(err){
-            errMsg='the user not found';
+        console.log(result);
+        if(err){throw err};
+        //user not found
+        if(!result.length) { 
+            res.render('index',{test2:'user not found'});
+         
+        }else{
+            res.cookie('useremail',useremail);
+            res.redirect('member');
         };
-        console.log(result);
-        res.send(errMsg);
     });
 });
 
-//update posts
-app.get('/updatepost/:id',(req, res)=>{
-    let newTitle='Update Title'
-    let sql = `UPDATE posts SET title = '${newTitle}' WHERE id = ${req.params.id}`;
-    let query = db.query(sql,(err,result)=>{
-        if(err) throw err;
-        console.log(result);
-        res.send('Post fetched...');
-    });
-});
-
-//update posts
-app.get('/deletepost/:id',(req, res)=>{
-    let newTitle='Update Title'
-    let sql = `DELETE FROM posts WHERE id = ${req.params.id}`;
-    let query = db.query(sql,(err,result)=>{
-        if(err) throw err;
-        console.log(result);
-        res.send('Post deleted...');
-    });
-});
 
 app.listen('3000',()=>{
 

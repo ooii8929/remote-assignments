@@ -2,7 +2,7 @@ extends layout
 
 block content
     header
-        h2 #{useremail}!
+        h1 Welcome, #{useremail}!
    
         form(action='/logout',method='post')
-            button(type='submit') Bye!
+            button(type='submit' class='member-btn') Bye!
