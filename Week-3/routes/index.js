@@ -7,9 +7,7 @@ router.get('/', (req, res) => {
     res.send('Hello World!')
   })
   
-router.get('/test', (req, res) => {
-    res.send('<h1>test</h1>');
-})
+
 
 
 
