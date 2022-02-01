@@ -9,7 +9,7 @@ async function main() {
       });
     };
     
-    delayedResultPromise(4, 5, 3000).then(console.log);
+    delayedResultPromise(4, 5, 3000);
 };
 
-main(); // result will be shown in the console after <delayTime> seconds
+main(); // result will be shown in the console after <delayTime> seconds  
